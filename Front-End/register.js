@@ -1,4 +1,4 @@
-function login1(event){
+function register3(event){
     event.preventDefault();
     let registerform = document.getElementById("register")
     var user = registerform.elements["user"].value
