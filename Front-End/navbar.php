@@ -6,7 +6,7 @@
             <a href="login.php" class="w3-bar-item w3-button">Login Here</a>
             <a href="register.php" class="w3-bar-item w3-button">Register Here!</a>
             <a href="game1.htm" class="w3-bar-item w3-button">Go Home Gazeebo</a>
-             <a href="game2.htm" class="w3-bar-item w3-button">Molecules Mission</a>
+             <a href="game2.htm" class="w3-bar-item w3-button">Mission: Molecule</a>
           </div>
         </div>
       </div>
