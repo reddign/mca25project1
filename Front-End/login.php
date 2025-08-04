@@ -8,7 +8,7 @@
 </head>
 <body>
      <div class="container">
-    <form id="login"method="post" action="process/processlogin.php">
+    <form id="login"method="post" action="processlogin.php">
         <label for="user">Username</label>
         <input type="text" id="user" name="user">
         <br><br>
@@ -17,11 +17,7 @@
         <button onclick="login1(event)">Login</button>
         <!-- <input type="submit" value="login"> -->
     </form>
-    <section>
-        <div class: register>
-     <a href="register.htm"  style="color: #033d42;" >REGISTER NOW!!</a><BR>
-        </div>
-    </section>
+    
 </div>
 </body>
 </html>
