@@ -5,7 +5,6 @@
     <title>Start page</title>
     <link href="navbar.css" rel="stylesheet">
 </head>
-
 <body>
     
     <nav class="main-nav"> 
@@ -18,7 +17,7 @@
                     <img id="logo" src="logo.png" alt="logo" height="200px" style="position: relative; top: 10px; left: 10%">
                 </a>
             </li>
-            <li class="nav-item page"> <a target="_blank" href="game1.htm" class="w3-bar-item w3-button">Go Home Gazeebo</a> </li>
+            <li class="nav-item page"> <a target="_blank" href="game1.htm" class="w3-bar-item w3-button" >Go Home Gazeebo</a> </li>
             <li class="nav-item page"> <a target="_blank" href="game2.htm" class="w3-bar-item w3-button">Mission: Molecule</a> </li>
             <!-- <li class="nav-item page"> <a target="_blank" href="startpage.php" class="w3-bar-item w3-button">Go Back to the Homepage</a> </li> -->
         </ul>

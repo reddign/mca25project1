@@ -20,6 +20,7 @@ h1 {
     border-style: dashed;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 2%;
+    margin: 0 auto;
 }
 
 a {
@@ -28,7 +29,10 @@ a {
 }
 
 .main-nav {
-    background-color: #583B53;
+    /* background-color: #583B53; */
+    background-image: url(space.gif);
+     background-size: 70%;
+    background-position:center;
     padding: 10px 0;
 }
 
@@ -40,6 +44,8 @@ a {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    font-size: larger;
+    
 }
 
 .nav-item {
@@ -57,14 +63,20 @@ a {
 }
 
 .w3-bar-item.w3-button {
-    color: white;
+    color: rgb(72, 210, 90);
     padding: 8px 16px;
     display: block;
+    text-shadow: 1px 1px 2px #00ff7b;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 .w3-bar-item.w3-button:hover {
-    background-color: #775A70;
+    background-color: #32816f;
+    border-radius: 15px;
+    opacity: 0.9;
+    color: #723a8c;
 }
+
 
 
 
