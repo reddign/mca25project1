@@ -37,8 +37,8 @@ animation()
 
 function animation(){
 clear();
-// jump();
-walk();
+jump();
+// walk();
 player();
 }
 
@@ -57,17 +57,16 @@ function clear(){
 }
 
 //Moving
-function walk(){
-document.addEventListener('keypress', function(event) {
-if (event.code == 'KeyW') {
-    console.log("hey");
-} else {
-    console.log("not registering");
-}
-})
-}
+function jump(){
+    document.addEventListener('keypress', function(event) {
+        if (event.code == 'KeyW') {
+            x += 10;
+} }) }
 
-
+function movingstuff(){
+    x = x + speed*directionX;
+    y = y + speed*directionY;
+}
 
 
 
