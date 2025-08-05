@@ -6,7 +6,8 @@ const graphics = canvas.getContext("2d");
 let rockX= 800;
 let rockY = 479;
 let y = 420;
-
+let x = 100;
+let fps = 3;
 
 
 
@@ -16,9 +17,14 @@ function animation()
 {
 clear();
 rock();
-rockX -= 100;
-block();
+rockX -= 50;
+block(x,y);
 jump();
+if(y < 420)
+{
+y+= 20;
+}
+
 }
 
 
@@ -31,11 +37,37 @@ function rock()
     graphics.closePath();
 
 }
-//Ball
-function block()
+function jump(event)
+{
+    document.addEventListener('keyup', function(event) 
+    {
+ 
+    if (y == 420){
+        if(event.key === 'Enter')
+        {
+             y = 320;
+        }
+    }
+}
+    )
+}
+
+
+// document.addEventListener('keydown', function(event) {
+//         console.log('Key Pressed:', event.key); // Logs the character of the pressed key
+//         console.log('Key Code:', event.code); // Logs the physical key code
+//         if (event.key === 'Enter') {
+//             console.log('Enter key was pressed!');
+//         }
+//         if (event.ctrlKey && event.key === 's') {
+//             console.log('Ctrl + S was pressed!');
+//         }
+//     });
+
+function block(x,y)
 {
 graphics.fillStyle = "#00C15D";
-graphics.fillRect(100,420,80,80);
+graphics.fillRect(x,y,80,80);
 }
 //Clear
 function clear()
@@ -50,4 +82,4 @@ function clear()
 
 
 
-window.setInterval(animation,500);
+window.setInterval(animation,500/fps);
