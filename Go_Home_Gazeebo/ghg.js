@@ -1,6 +1,6 @@
 /*Luca
 
-LAYOUT FOR GO HOME GAZEEBO:
+LAYOUT FOR GO HOME GAZEEBO (POINT N CLICK):
     Farm (Part 1)
     City
     Mesa Canyon (Part 2)
@@ -10,7 +10,16 @@ LAYOUT FOR GO HOME GAZEEBO:
     Jungle (Part 4)
     Snowy Plains
     Mountain (Part 5)
-    End Scene (From Mountain Top)*/
+    End Scene (From Mountain Top)
+
+LAYOUT FOR GO HOME GAZEEBO (Platformer where each level ends with a ship part being collected):
+    Farm
+    Canyon
+    Jungle
+    Icy Forest
+    Mountain
+
+*/
 
     
 //Gets the HTML object canvas from webpage (document)
@@ -18,39 +27,28 @@ let canvas = document.querySelector("canvas");
 //Gets the graphics
 const graphics = canvas.getContext("2d");
 //Declare Variables
-let rockX= 800;
-let rockY = 479;
-let y = 420;
+let x = 700;
+let y = 432;
+
+
+animation()
 
 
 
-
-
-
-function animation()
-{
+function animation(){
 clear();
-rock();
-rockX -= 100;
-block();
 jump();
+walk();
+player();
 }
 
 
-function rock()
-{
-    graphics.fillStyle = "gray";
-    graphics.beginPath();
-    graphics.arc(rockX,rockY,20,0,Math.PI*2);
-    graphics.fill();
-    graphics.closePath();
 
-}
 //Ball
-function block()
+function player()
 {
 graphics.fillStyle = "#00C15D";
-graphics.fillRect(100,420,80,80);
+graphics.fillRect(x,y,60,80);
 }
 //Clear
 function clear()
