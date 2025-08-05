@@ -30,7 +30,10 @@ const graphics = canvas.getContext("2d");
 let x = 700;
 let y = 432;
 let FPS = 60;
-let speed = 2;
+let velocityY = 0;
+let gravity = 0.8;
+let jumpStrength = -15;
+let groundY = 432;
 
 //animation()
 
@@ -38,10 +41,20 @@ let speed = 2;
 
 function animation(){
     clear();
-    jump();
-    if (y < 432) {
-        y+= 5;
+
+    y += velocityY;
+    velocityY += gravity;
+
+    if (y > groundY) {
+        y = groundY;
+        velocityY = 0;
     }
+    // for (let i=0; i<20; i++) {
+    //     jump();
+    // }
+    // if (y < 432) {
+    //     y+= 5;
+    // }
     walkleft();
     player();
 }
@@ -60,18 +73,21 @@ function clear(){
     graphics.fillRect(0,0,canvas.width,canvas.height);
 }
 
-//Moving
-function jump(){
-    document.addEventListener('keypress', function(event) {
+document.addEventListener('keypress', function(event) {
+    if (event.key === 'w' && y === groundY) {
+        velocityY = jumpStrength;
+    }
+});
 
-        if (y == 432) {
-        if (event.key == 'w') {
-            for (let i=0; i<20; i++) {
-                y += -10;
-                console.log(y);
-            }
-}
- } }) }
+//Moving
+// function jump(){
+//     document.addEventListener('keypress', function(event) {
+
+//         if (y == 432) {
+//         if (event.key == 'w') {
+//             y += -100;
+// }
+//  } }) }
 
 function walkleft(){
     document.addEventListener('keypress', function(event) {
