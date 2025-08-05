@@ -29,17 +29,21 @@ const graphics = canvas.getContext("2d");
 //Declare Variables
 let x = 700;
 let y = 432;
+let FPS = 60;
+let speed = 2;
 
-
-animation()
+//animation()
 
 
 
 function animation(){
-clear();
-jump();
-// walk();
-player();
+    clear();
+    jump();
+    if (y < 432) {
+        y+= 5;
+    }
+    walkleft();
+    player();
 }
 
 
@@ -59,9 +63,27 @@ function clear(){
 //Moving
 function jump(){
     document.addEventListener('keypress', function(event) {
-        if (event.code == 'KeyW') {
-            x += 10;
-} }) }
+
+        if (y == 432) {
+        if (event.key == 'w') {
+            for (let i=0; i<20; i++) {
+                y += -10;
+                console.log(y);
+            }
+}
+ } }) }
+
+function walkleft(){
+    document.addEventListener('keypress', function(event) {
+
+        if (event.key == 'a') {
+            for (let i=0; i<20; i++) {
+                x += -10;
+                console.log(x);
+            }
+    }})}  
+
+
 
 function movingstuff(){
     x = x + speed*directionX;
@@ -70,4 +92,4 @@ function movingstuff(){
 
 
 
-window.setInterval(animation,500);
+window.setInterval(animation,1000/FPS);
