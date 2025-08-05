@@ -44,20 +44,22 @@ player();
 
 
 
-//Ball
-function player()
-{
+//Gazeebo
+function player(){
 graphics.fillStyle = "#00C15D";
 graphics.fillRect(x,y,60,80);
 }
+
 //Clear
-function clear()
-{
+function clear(){
     graphics.fillStyle = "#FFEEDD";
     graphics.fillRect(0,0,canvas.width,canvas.height);
 }
 
+//Moving
+function walk(){
 
+}
 
 
 
