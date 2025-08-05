@@ -1,13 +1,49 @@
+@font-face{
+    font-family: 'starborn';
+  src: url('/Front-End/fonts/Superadorable.ttf') format('truetype');
+          font-weight: normal;
+}
 body{
-    background-color: #c1bccf;
+    background-color: #403659;
+    margin: 0;
+    padding: 0;
+
 }
 
-li{
+/* li{
     color: #9f5974;
-}
+     text-align: center;
+    
+} */
 h1{
     color: #13a448;
     background-color: #00C15D;
     border-radius: 15px;
-    width: 15%;
+    width: 13%;
+    text-align:center;
+     border:3px solid #038d46;
+    border-style: dashed;
+    font-family:Arial, Helvetica, sans-serif;
+    margin-top: 2%;
+
 }
+a{
+    color: #038d46;
+}
+ul {
+    list-style-type: none;
+    margin: 10;
+    padding: 0;
+    overflow: hidden;
+    background-color: #583B53;
+     list-style-type: none;
+}
+li.page{
+ display: inline-block;
+}
+li.logo{
+    text-align: center;
+}
+
+
+
