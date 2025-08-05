@@ -5,11 +5,17 @@ const graphics = canvas.getContext("2d");
 //Declare Variables
 let rockX= 800;
 let rockY = 479;
-let y = 420;
+let y = 408;
 let x = 100;
 let fps = 3;
-
-
+let frame = 1
+//Molecule sprites
+const mImage1 = new Image();
+mImage1.src = "Molecule_1.png"
+const mImage2 = new Image();
+mImage2.src = "Molecule_2.png"
+const mImage3 = new Image();
+mImage3.src = "Molecule_3.png"
 
 
 
@@ -18,9 +24,9 @@ function animation()
 clear();
 rock();
 rockX -= 50;
-block(x,y);
+moleculeImage(x,y);
 jump();
-if(y < 420)
+if(y < 408)
 {
 y+= 20;
 }
@@ -42,32 +48,28 @@ function jump(event)
     document.addEventListener('keyup', function(event) 
     {
  
-    if (y == 420){
+    if (y == 408){
         if(event.key === 'Enter')
         {
-             y = 320;
+             y = 328;
         }
     }
 }
     )
 }
 
-
-// document.addEventListener('keydown', function(event) {
-//         console.log('Key Pressed:', event.key); // Logs the character of the pressed key
-//         console.log('Key Code:', event.code); // Logs the physical key code
-//         if (event.key === 'Enter') {
-//             console.log('Enter key was pressed!');
-//         }
-//         if (event.ctrlKey && event.key === 's') {
-//             console.log('Ctrl + S was pressed!');
-//         }
-//     });
-
-function block(x,y)
+function moleculeImage(x,y)
 {
-graphics.fillStyle = "#00C15D";
-graphics.fillRect(x,y,80,80);
+if(frame == 1 || frame == 3)
+{graphics.drawImage(mImage1,x,y,100,100);}
+else if(frame == 2)
+{graphics.drawImage(mImage2,x,y,100,100);}
+else
+{graphics.drawImage(mImage3,x,y - 8,100,100);}
+frame++;
+if(frame > 4 ){
+    frame = 1 ;
+}
 }
 //Clear
 function clear()
