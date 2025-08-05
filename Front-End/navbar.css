@@ -8,4 +8,6 @@ li{
 h1{
     color: #13a448;
     background-color: #00C15D;
+    border-radius: 15px;
+    width: 15%;
 }
