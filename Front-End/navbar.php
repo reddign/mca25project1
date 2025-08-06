@@ -12,10 +12,10 @@
             <a href="Front-End/profile.php" class="w3-bar-item w3-button">My Profile</a>
              <li><a href="../index.php" class="w3-bar-item w3-button"><img src="Front-End/logo.png" class="nav-item.logo" height="200px" ></a></li>
           </div><div class="nav-list">
-            <a href="../Go_Home_Gazeebo/ghg.htm" class="w3-bar-item w3-button">Go Home Gazeebo</a>
+            <a href="Go_Home_Gazeebo/ghg.htm" class="w3-bar-item w3-button">Go Home Gazeebo</a>
             <?php?>
-             <a href="../Molecule's_Game/game2.htm" class="w3-bar-item w3-button">Molecule's Mission</a>
-             <a href="../Starbound_Sprint/sbs.htm" class="w3-bar-item w3-button">Starbound Sprint</a>
+             <a href="Molecule's_Game/game2.htm" class="w3-bar-item w3-button">Molecule's Mission</a>
+             <a href="Starbound_Sprint/sbs.htm" class="w3-bar-item w3-button">Starbound Sprint</a>
           </div>
         </div>
       </div>
