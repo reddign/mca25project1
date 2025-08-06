@@ -5,6 +5,9 @@ session_start();
 
 $u2 = $_POST["user2"];
 $p2 = $_POST["password2"];
+$badge1 = $_POST["badge1"];
+$badge2 = $_POST["badge2"];
+$badge3 = $_POST["badge3"];
 
 // if($_SERVER['HTTP_HOST']=="127.0.0.1"){
 //     $mysqli = new mysqli("127.0.0.1","root","","mca");
@@ -28,15 +31,15 @@ $rows = $result -> fetch_all(MYSQLI_ASSOC);
  if(is_array($rows) && array_key_exists(0,$rows) && $rows[0]["approved"]==1){
 
     $_SESSION["LoggedIn"]="YES";
-    $_SESSION["coins"]=100;
     $_SESSION["UserID"]=$u2;
     header("location:../index.php");
 }else{
     $_SESSION["LoggedIn"]="NO";
-    $_SESSION["coins"]=0;
     $_SESSION["UserID"]="";
     header("location:../Front-End/login.php?message=Incorrect username or password.");
 }
+
+
 
 
  ?>

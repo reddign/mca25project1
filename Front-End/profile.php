@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <a href="Front-End/login.php"></a>
+   
 </head>
 <style type="text/css">
     #bar{
@@ -27,24 +28,22 @@
     session_start();
 
     if ($_SESSION["LoggedIn"]=="YES") {
-        echo "yes";
+        $u = $_SESSION["UserID"];
+        echo $u;
+    
     } else {
-        echo "no";
+        echo "Not logged in";
     } 
-    // $u2 = $_SESSION["user2"];
-    // // $p2 = $_POST["password2"];
-
-    //  $mysqli = new mysqli("195.35.59.14","u121755072_cohick","+05Ouz%9","u121755072_cohickdb");
-
-
-    // if($mysqli -> connect_errno){
-    // echo "Failed to connect to My SQL : ". $mysqli->connect_error;
-    // exit;
-    // }
-    // $sql= "SELECT * from starfall_users
-    // where username='{$u2}' "
-    // // -- and password='{$p2}'";
     ?>
+  <section>
+    <h2>Achievements!</h2>
+        <p>
+        Badge 1 : <br><br><br>
+        Badge 2 : <br><br><br>
+        Badge 3 : 
+
+        </p>
+    </section>
 </div>
 </body>
 </html>
