@@ -11,13 +11,13 @@
 <body>
      <div class="container">
     <form id="register2"method="post" action="processregister.php">
-        <label for="user2">Username</label>
-        <input type="text" id="user2" name="user2">
+        <label for="user3">Username</label>
+        <input type="text" id="user3" name="user3">
         <br><br>
-        <label for="password2">Password</label>
-        <input type="password2" id="password2" name="password2"> <br><br>
+        <label for="password3">Password</label>
+        <input type="password" id="password3" name="password3"> <br><br>
          <label for="email2">Email</label>
-        <input type="email2" id="email2" name="email2"> <br><br>
+        <input type="email" id="email2" name="email2"> <br><br>
         <button onclick="register3(event)">Register</button>
         <!-- <input type="submit" value="login"> -->
     </form>
