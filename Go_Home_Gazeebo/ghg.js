@@ -1,5 +1,7 @@
 /*Luca
 
+WITH A LOT OF HELP FROM TEDDY (THANK YOU SO MUCH)
+
 LAYOUT FOR GO HOME GAZEEBO (POINT N CLICK):
     Farm (Part 1)
     City
@@ -32,12 +34,13 @@ let y = 432;
 let FPS = 60;
 let velocityY = 0;
 let gravity = 0.8;
-let jumpStrength = -15;
+let jumpStrength = -20;
 let groundY = 432;
 
 //animation()
 
-
+    walkleft();
+    walkright();
 
 function animation(){
     clear();
@@ -49,13 +52,15 @@ function animation(){
         y = groundY;
         velocityY = 0;
     }
+
+
     // for (let i=0; i<20; i++) {
     //     jump();
     // }
     // if (y < 432) {
     //     y+= 5;
     // }
-    walkleft();
+
     player();
 }
 
@@ -69,7 +74,7 @@ graphics.fillRect(x,y,60,80);
 
 //Clear
 function clear(){
-    graphics.fillStyle = "#FFEEDD";
+    graphics.fillStyle = "rgba(87, 149, 230, 1)"
     graphics.fillRect(0,0,canvas.width,canvas.height);
 }
 
@@ -90,14 +95,24 @@ document.addEventListener('keypress', function(event) {
 //  } }) }
 
 function walkleft(){
-    document.addEventListener('keypress', function(event) {
+    document.addEventListener('keydown', function(event) {
 
         if (event.key == 'a') {
-            for (let i=0; i<20; i++) {
-                x += -10;
+            
+                x += -5;
                 console.log(x);
-            }
-    }})}  
+            
+}})}  
+
+function walkright(){
+    document.addEventListener('keydown', function(event) {
+
+        if (event.key == 'd') {
+            
+                x += 5;
+                console.log(x);
+            
+}})}  
 
 
 
