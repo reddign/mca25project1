@@ -5,6 +5,7 @@
     <title>Login</title>
      <!-- <link href="login.css" rel="stylesheet"> -->
     <script src="login.js"></script>
+    <link href= "login.css" rel= stylesheet>
 
 </head>
 <body>

@@ -1,0 +1,70 @@
+body {font-family:Georgia, 'Times New Roman', Times, serif;
+  text-align:center;
+  display: flex; 
+    justify-content: center; 
+    align-items: center;  
+    background-image: url(space.gif); 
+    background-size: 100%;
+    background-position:center;
+   
+}
+
+
+/* Bordered form */
+form {
+    border: 3px solid #9F5974;
+    border-style:dashed;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  /* Full-width inputs */
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: center;
+    
+  }
+  
+  /* Set a style for all buttons */
+  button {
+    background-color: #a8577d;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+
+  }
+  
+  /* Add a hover effect for buttons */
+  button:hover {
+    opacity: 0.8;
+  }
+
+  
+  /* Add padding to containers */
+  .container {
+    width: 500px;
+    padding: 16px;
+    background-color: #583B53;
+    border-radius: 15px;
+  }
+ 
+  .link{
+    text-align: center;
+    color: white;
+      display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+  }
+  a:hover{
+color: rgba(81, 203, 85, 0.681);
+}
