@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <a href="Front-End/login.php"></a>
-   
+   <?php include "navbar.php";
+   ?>
 </head>
 <style type="text/css">
     #bar{
