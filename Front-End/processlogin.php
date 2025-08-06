@@ -30,7 +30,7 @@ $rows = $result -> fetch_all(MYSQLI_ASSOC);
     $_SESSION["LoggedIn"]="YES";
     $_SESSION["coins"]=100;
     $_SESSION["UserID"]=$u2;
-    header("location:../Front-End/startpage.php");
+    header("location:../index.php");
 }else{
     $_SESSION["LoggedIn"]="NO";
     $_SESSION["coins"]=0;
