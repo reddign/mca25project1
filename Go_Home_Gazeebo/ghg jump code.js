@@ -12,6 +12,7 @@ const gravity = 0.5; // Controls the strength of gravity, adjust as needed
 const jumpForce = -20; // The initial upward force when jumping
 const groundLevel = 800; // The Y-position where the player lands
 const platform_1 = 500 - 20;
+let plat_x = player.x;
 
 const keys = {
   w: false,
@@ -22,10 +23,12 @@ const keys = {
 
 let frame = 1
 
-function platform(){
+function platform(x,y){
     graphics.fillStyle = "black";
-    graphics.fillRect(0,100,800,100);
-}
+    graphics.fillRect(x,y,800,100);
+    if(x == plat_x){
+      player.isJumping = true; // Reset jump state
+}}
 
 
 
@@ -52,7 +55,8 @@ platform();
 function gameLoop() {
     update(); // Update game state
     draw(); // Render game elements
-    platform();
+    platform(100,500);
+    platform(200, 700);
     requestAnimationFrame(gameLoop); // Schedule next frame
     GazeeboIdle();
 }
