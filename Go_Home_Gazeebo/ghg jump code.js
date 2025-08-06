@@ -2,15 +2,16 @@ let canvas = document.querySelector("canvas");
 const graphics = canvas.getContext("2d");
 
 const player = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
+  x: canvas.width/40,
+  y: canvas.height/1.1,
   speed: 5,
   velocityY: 0, // Represents vertical velocity (for jumping/falling)
   isJumping: false, // Flag to track if the player is currently jumping
 };
 const gravity = 0.5; // Controls the strength of gravity, adjust as needed
 const jumpForce = -20; // The initial upward force when jumping
-const groundLevel = 700 - 20; // The Y-position where the player lands
+const groundLevel = 800; // The Y-position where the player lands
+const platform_1 = 500 - 20;
 
 const keys = {
   w: false,
@@ -18,6 +19,15 @@ const keys = {
   s: false,
   d: false,
 };
+
+let frame = 1
+
+function platform(){
+    graphics.fillStyle = "black";
+    graphics.fillRect(0,100,800,100);
+}
+
+
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "w" && player.y >= groundLevel) { // Only jump if on the ground
@@ -37,11 +47,14 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "d") keys.d = false;
 });
 
+platform();
+
 function gameLoop() {
     update(); // Update game state
     draw(); // Render game elements
+    platform();
     requestAnimationFrame(gameLoop); // Schedule next frame
-    // GazeeboIdle();
+    GazeeboIdle();
 }
 
 function update() {
@@ -61,7 +74,7 @@ function update() {
 
   // Boundary checks (ensure these are after gravity and grounding)
   player.x = Math.max(0, Math.min(canvas.width - 20, player.x));
-  player.y = Math.max(0, Math.min(canvas.height - 20, player.y));
+  player.y = Math.max(0, Math.min(canvas.height - 40, player.y));
 }
 
 
@@ -82,18 +95,23 @@ const mImage4 = new Image();
 mImage4.src = "prites/Gazeebo3.png"
 
 function GazeeboIdle(x,y){
-if(frame == 1)
-{graphics.drawImage(mImage1,x,y,60,80);}
-else if(frame == 16)
-{graphics.drawImage(mImage2,x,y,60,80);}
-else if(frame == 31)
-{graphics.drawImage(mImage3,x,y,60,80);}
-else if(frame == 46)
-{graphics.drawImage(mImage4,x,y,60,80);}
+if(frame == 1 || frame == 7.5)
+{graphics.drawImage(mImage2,player.x - 20, player.y - 60,60,80);}
+// else if(frame == 15)
+// {graphics.drawImage(mImage2,player.x,player.y,60,80);}
+// else if(frame == 22.5)
+// {graphics.drawImage(mImage3,player.x,player.y,60,80);}
+// else if(frame == 30)
+// {graphics.drawImage(mImage4,player.x,player.y,60,80);}
+else {
+graphics.drawImage(mImage2,player.x - 20, player.y - 60, 60, 80);
+}
 frame++;
-if(frame > 61 ){
-    frame = 1 ;
+if(frame > 61 )
+    {frame = 1 ;
 }
 }
 
 gameLoop();
+
+window.setInterval(animation,1000/30);
