@@ -1,5 +1,5 @@
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+let canvas = document.querySelector("canvas");
+const graphics = canvas.getContext("2d");
 
 const player = {
   x: canvas.width / 2,
@@ -9,8 +9,8 @@ const player = {
   isJumping: false, // Flag to track if the player is currently jumping
 };
 const gravity = 0.5; // Controls the strength of gravity, adjust as needed
-const jumpForce = -10; // The initial upward force when jumping
-const groundLevel = canvas.height - 20; // The Y-position where the player lands
+const jumpForce = -20; // The initial upward force when jumping
+const groundLevel = 700 - 20; // The Y-position where the player lands
 
 const keys = {
   w: false,
@@ -65,9 +65,9 @@ function update() {
 
 
 function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-  ctx.fillStyle = "blue"; // Set player color
-  ctx.fillRect(player.x, player.y, 20, 20); // Draw the player as a rectangle
+  graphics.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+  graphics.fillStyle = "blue"; // Set player color
+  graphics.fillRect(player.x, player.y, 20, 20); // Draw the player as a rectangle
 }
 
 gameLoop();
