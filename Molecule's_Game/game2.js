@@ -11,12 +11,14 @@
     let rockY = 405;
     let birdX = 500;
     let birdY = 260;
+    let score = 0;
     let y = 370;
     let x = 100;
-    let fps = 8;
+    let fps = 9;
     let mFrames = 1
     let bFrames = 1;
-    let speed = 50;
+    let speed = 30;
+    let gameStarted = false;
 //Molecule sprites
     const mImage1 = new Image();
     mImage1.src = "Molecule_1.png"
@@ -31,6 +33,8 @@
     bImage1.src = "Bird_1.png"
     const bImage2 = new Image();
     bImage2.src = "Bird_2.png"
+     const bImage3 = new Image();
+    bImage3.src = "Bird_3.png"
 //Backgrounds
     const backgrounds = [];
     const back1 = new Image();
@@ -43,20 +47,57 @@
     back3.src = "Background_3.png";
     backgrounds.push(back3);
 
+
+
+function beginScreen()
+{
+    graphics.fillStyle = "#2E273F";
+    graphics.fillRect(0,0,canvas.width,canvas.height)
+    graphics.fillStyle = "#00C15D";
+    graphics.strokeStyle = "#00C15D";
+    graphics.font = "bold 25px '', monospace"
+    let begin = "A bird has stolen the core to the spaceship";
+    graphics.fillText(begin,220,200);
+    graphics.fillText("Press enter to start", 375,250);
+
+}
+function startGame(event){
+
+    
+        
+            if( gameStarted == false)
+            {
+             let interval = window.setInterval(animate,100);
+             gameStarted = true;
+            }
+}
 //Animation function to make the game move
     function animation()
     {
         clear();
+        scoreBoard();
         rock();
         rockX -= speed;
         moleculeImage(x,y);
         birdImage(birdX,birdY);
         jump();
         if(y < 370)
-        {y+= 20;}
-        if(rockX < 0)
+        {y += 15;}
+        if(rockX < -50)
         {rockX = 1010;}
+        if(rockX > 120 && rockX <= 160 && y == 370){
+            console.log("You died");
+        }else if(rockX > 120 && rockX <= 160 && y != 370){
+            score+= 10;
+        }
     }
+//Function to display score
+function scoreBoard()
+{
+    graphics.fillStyle = "rgba(71, 139, 76, 1)";
+    graphics.font = "24px '', monospace"
+    graphics.fillText("Score: " + score, 30,30);
+}
 //Function to draw a rock
     function rock()
     {
@@ -71,7 +112,7 @@
         if (y == 370){
             if(event.key === 'Enter')
             {
-                y = 290;
+                y = 280;
             }
         }
     }
@@ -95,8 +136,12 @@
     {
         if(bFrames == 0)
         {graphics.drawImage(bImage1,x,y,60,60);}
-        else(bFrames == 2)
+        else if(bFrames == 1)
+        {graphics.drawImage(bImage3,x,y,60,60);}
+        else if(bFrames == 2)
         {graphics.drawImage(bImage2,x,y,60,60);}
+        else
+        {graphics.drawImage(bImage3,x,y,60,60)}
         bFrames++;
         if(bFrames > 2){
             bFrames = 0 ;
@@ -109,15 +154,6 @@
 //Clear
 function clear()
 {
-   
     graphics.drawImage(backgrounds[0],0,0,1000,500);
-
 }
 
-
-
-
-
-
-
-window.setInterval(animation,500/fps);
