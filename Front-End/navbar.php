@@ -10,7 +10,7 @@
             <li><a href="Front-End/login.php" class="w3-bar-item w3-button">Login Here</a></li>
             <a href="Front-End/register.php" class="w3-bar-item w3-button">Register Here!</a>
             <a href="Front-End/profile.php" class="w3-bar-item w3-button">My Profile</a>
-             <li><a href="../index.php" class="w3-bar-item w3-button"><img src="Front-End/logo.png" class="nav-item.logo" height="200px" ></a></li>
+             <li><a href="index.php" class="w3-bar-item w3-button"><img src="Front-End/logo.png" class="nav-item.logo" height="200px" ></a></li>
           </div><div class="nav-list">
             <a href="Go_Home_Gazeebo/ghg.htm" class="w3-bar-item w3-button">Go Home Gazeebo</a>
             <?php?>
