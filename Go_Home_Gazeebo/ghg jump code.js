@@ -38,9 +38,10 @@ document.addEventListener("keyup", (e) => {
 });
 
 function gameLoop() {
-  update(); // Update game state
-  draw(); // Render game elements
-  requestAnimationFrame(gameLoop); // Schedule next frame
+    update(); // Update game state
+    draw(); // Render game elements
+    requestAnimationFrame(gameLoop); // Schedule next frame
+    // GazeeboIdle();
 }
 
 function update() {
@@ -68,6 +69,31 @@ function draw() {
   graphics.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
   graphics.fillStyle = "blue"; // Set player color
   graphics.fillRect(player.x, player.y, 20, 20); // Draw the player as a rectangle
+}
+
+// animations
+const mImage1 = new Image();
+mImage1.src = "prites/Gazeebo.png"
+const mImage2 = new Image();
+mImage2.src = "prites/Gazeebo1.png"
+const mImage3 = new Image();
+mImage3.src = "prites/Gazeebo2.png"
+const mImage4 = new Image();
+mImage4.src = "prites/Gazeebo3.png"
+
+function GazeeboIdle(x,y){
+if(frame == 1)
+{graphics.drawImage(mImage1,x,y,60,80);}
+else if(frame == 16)
+{graphics.drawImage(mImage2,x,y,60,80);}
+else if(frame == 31)
+{graphics.drawImage(mImage3,x,y,60,80);}
+else if(frame == 46)
+{graphics.drawImage(mImage4,x,y,60,80);}
+frame++;
+if(frame > 61 ){
+    frame = 1 ;
+}
 }
 
 gameLoop();
