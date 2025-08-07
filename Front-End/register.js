@@ -1,8 +1,8 @@
 function register3(event){
     event.preventDefault();
     let registerform = document.getElementById("register2")
-    var user = registerform.elements["user3"].value
-    var pass = registerform.elements["password3"].value
+    var user = registerform.elements["user2"].value
+    var pass = registerform.elements["password2"].value
      var email = registerform.elements["email2"].value
 
     if(user=="" || pass==""){

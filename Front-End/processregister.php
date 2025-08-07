@@ -3,9 +3,9 @@
 // session_start();
 //process the login for website
 
-$u3 = $_POST["user3"];
-$p3 = $_POST["password3"];
-$e3 = $_POST["email2"];
+$u2 = $_POST["user2"];
+$p2 = $_POST["password2"];
+$e2 = $_POST["email2"];
 
 
 
@@ -18,7 +18,7 @@ if($mysqli -> connect_errno){
 
 $sql = "INSERT INTO starfall_users
 (username,password,email,approved) 
-VALUES ('{$u3}',SHA2(concat('{$p3}','starfall'),224),'{$e3}',1);";
+VALUES ('{$u2}',MD5(concat('{$p2}','starfall')),'{$e2}',1);";
 
 
 $result = $mysqli -> query($sql);

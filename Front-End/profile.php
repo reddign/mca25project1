@@ -49,7 +49,9 @@
         Badge 3 : 
 
         </p> -->
+            
     </section>
+    <a href="logout.php" style="color:black;font-size:50px">Log Out</a><BR>
 </div>
 </body>
 </html>

@@ -5,9 +5,6 @@ session_start();
 
 $u2 = $_POST["user2"];
 $p2 = $_POST["password2"];
-$badge1 = $_POST["badge1"];
-$badge2 = $_POST["badge2"];
-$badge3 = $_POST["badge3"];
 
 // if($_SERVER['HTTP_HOST']=="127.0.0.1"){
 //     $mysqli = new mysqli("127.0.0.1","root","","mca");
@@ -19,8 +16,7 @@ if($mysqli -> connect_errno){
     echo "Failed to connect to My SQL : ". $mysqli->connect_error;
     exit;
 }
-$sql= "SELECT * from starfall_users
-where username='{$u2}' and password='{$p2}'";
+$sql= "SELECT * from starfall_users where username='{$u2}' and password= MD5(concat('{$p2}','starfall'));";
 // $sql= "SELECT * from users
 // where username='{$u}' and bestpassword=SHA2(CONCAT('{$p}','freak'),224)";
 
