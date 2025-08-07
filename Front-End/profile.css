@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
      background-image: url(space.gif); 
-    background-size: 100%;
+    background-size: 150%;
     background-position:center;
      
 }
@@ -35,7 +35,7 @@ a {
 .main-nav {
     /* background-color: #583B53; */
    
-     background-size: 70%;
+     background-size: 100%;
     background-position:center;
     padding: 50px 0;
 }
@@ -85,7 +85,11 @@ a {
     color: #faf8ce;
 }
 
-
-
-
-
+p{
+    margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h2{
+     margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -4,24 +4,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <a href="Front-End/login.php"></a>
+    <link href="profile.css" rel="stylesheet">
+    
    <?php include "navbar.php";
+   
    ?>
 </head>
 <style type="text/css">
     #bar{
         height:50px;
-        background-color: darkblue; 
+        background-color: #3f7d7d; 
         color: white;
         width: 850px; 
         margin:auto; 
         border-radius:10px;
+        font-family: arial, helvetica, sans-serif;
     }
     </style>
 <body style="background-color:white">
  <br>   
 <div id="bar"> 
     <div style="width: 800px; margin:auto;font-size: 30px; text-align:center;">
-        My Profile
+    Profile:
     </div>
 </div>
 <div style="width:850px;margin:auto;background-color:white;min-height:300px;">
