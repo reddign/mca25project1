@@ -74,7 +74,7 @@ function screen()
         graphics.fillStyle = "#d20909ff";
         graphics.strokeStyle = "#f4f0f3ff";
         graphics.font = "bold 25px '', monospace"
-        graphics.fillText("You killed Molecule! Try again?",280,250);
+        graphics.fillText("You failed Molecule! Try again?",280,250);
     }
 }
 function startGame(event)
