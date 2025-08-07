@@ -7,12 +7,12 @@ let canvas = document.querySelector("canvas");
 //Gets the graphics
 const graphics = canvas.getContext("2d");
 let x = 500
-let y = 430
+let y = 435
 let interval = ""
-let enemyX = [-10,-10,1030,4,-4,-4,-4,-4,-4,-4]
-let enemyY = [400,345,290,20,360,250,100,20]
-let enemySpeed = [20,22,23,20,25,18,20,30]
-let enemyDirection =[1,1,-1,-1,1,1,-1,1]
+let enemyX =     [-10,-10,1030,-4,-4,1030,1080,-4,-4,-4]
+let enemyY =     [400,335,270,190,130,60,60,20]
+let enemySpeed = [20,22,23,25,18,30,20,30]
+let enemyDirection =[1,1,-1,1,1,-1,-1,1]
 const keys = {
   w: false,
   a: false,
@@ -24,7 +24,17 @@ const keys = {
 
 
 
-clear();
+function screen()
+{
+        graphics.strokeStyle ="#f4f0f3ff"
+        graphics.fillStyle = "#010001ff";
+        graphics.fillRect(0,0,canvas.width,canvas.height);
+        graphics.strokeRect(0,0,canvas.width,canvas.height);
+        graphics.fillStyle = "#f4f0f3ff";
+        graphics.strokeStyle = "#f4f0f3ff";
+        graphics.font = "bold 25px '', monospace"
+        graphics.fillText("You crashed the ship! Try again? click the mouse.",180,250);
+}
 function animation()
 {
     clear();
@@ -32,10 +42,22 @@ function animation()
     enemy(0);
     enemy(1);
     enemy(2);
+    enemy(3);
+    enemy(4);
+    enemy(5);
+    enemy(6);
     checkKeys();
     for(let i = 0; i < enemyX.length; i++)
     {
-      
+
+        if((enemyX[i] >= x - 30 && enemyX[i] <= x + 30))
+        {
+            if(y >= enemyY[i] - 35 && y <= enemyY[i] + 45){
+             screen();
+             window.clearInterval(interval);
+            }
+         }
+         
     }
 }
 function enemyMovement(r){
@@ -101,4 +123,4 @@ function movement(){
 }
 
 
-window.setInterval(animation,200);
+interval =  window.setInterval(animation,200);
