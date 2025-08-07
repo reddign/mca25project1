@@ -15,18 +15,52 @@ const player = {
 };
 
 const platforms = [
+
   //first platform
   { x: 200, y: 800, width: 100, height: 100 },
 
   //platform heirarchy (last to first)
-  { x: 800, y: 400, width: 150, height: 100 },
-  { x: 760, y: 650, width: 100, height: 400 },
+  { x: 920, y: 500, width: 200, height: 700 },
+  { x: 760, y: 650, width: 150, height: 400 },
   { x: 600, y: 800, width: 150, height: 100 },
+  { x: 1130, y: 750, width: 250, height: 400 },
+
+  //floating platforms for ship part 1 (first to last)
+  { x: 490, y: 500, width: 250, height: 50 },
+  { x: 10, y: 500, width: 250, height: 50 },
+
+  //area to last shippart (first to last)
+  { x: 1300, y: 500, width: 595, height: 50 },
+  { x: 1500, y: 300, width: 395, height: 50 },
+  { x: 1100, y: 100, width: 200, height: 50 },
+
+  //end plats for last shippart
+  { x: 800, y: 100, width: 200, height: 50},
+  { x: 10, y: 100, width: 730, height: 50},
+];
+
+const platforms_bg = [
+  //background walls
+  { x: 0, y: 90, width: 750, height: 1050},
+  { x: 1290, y: 500, width: 600, height: 5000 },
+  { x: 1490, y: 300, width: 600, height: 5000 },
+  { x: 1090, y: 100, width: 220, height: 5000 },
+  { x: 790, y: 100, width: 220, height: 5000},
+
+];
+
+const shipparts = [
+  {x:50, y:30, width:50, height:50},
+
+  {x:50, y:430, width:50, height:50},
+
+  {x:1820, y:820, width:50, height:50},
 ];
 
 const groundLevel = canvas.height - 10;
 const gravity = 0.5; // Controls the strength of gravity, adjust as needed
-const jumpForce = -20; // The initial upward force when jumping
+const jumpForce = -15; // The initial upward force when jumping
+let i = 0
 
 const keys = {
   w: false,
@@ -37,6 +71,37 @@ const keys = {
 
 let frame = 1;
 
+function teacher(){
+  graphics.strokeStyle = "#f4f0f3ff";
+  graphics.font = "bold 25px '', monospace";
+  graphics.fillText("Press W to jump, and A and D", 60,700);
+  graphics.fillText("to move left and right respectively!", 10, 730);
+}
+
+function winscreen(){
+  graphics.strokeStyle = "#f4f0f3ff";
+  graphics.fillStyle = "#010001ff";
+  graphics.fillRect(0,0,canvas.width,canvas.height);
+  graphics.strokeRect(0,0,canvas.width,canvas.height);
+  graphics.fillStyle = "#60f50bff";
+  graphics.strokeStyle = "#f4f0f3ff";
+  graphics.font = "bold 25px '', monospace"
+  graphics.fillText("You did it! Gazeebo has collected all his ship parts!", 210,250);
+  graphics.fillText("But wait, don't you need the core too?",210,300);
+}
+
+function collect(){
+  while(i<3){
+    if(player.x > shipparts.x){
+    i++
+    shipparts.remove;
+    }
+
+  }if(i>=3){
+    winscreen();
+  }
+}
+
 function checkPlatformCollision(platform) {
   const playerL = player.x;
   const playerR = player.x + player.width;
@@ -46,12 +111,14 @@ function checkPlatformCollision(platform) {
   const platformL = platform.x;
   const platformR = platform.x + platform.width;
   const platformT = platform.y;
+  // const platformB = platform.y*-1;
 
   if (
     playerR > platformL &&
     playerL < platformR &&
     playerB >= platformT &&
     playerT <= platformT &&
+    // player.height <= platformB &&
     player.velocityY >= 0
   ) {
     return true;
@@ -79,6 +146,7 @@ document.addEventListener("keyup", (e) => {
 function gameLoop() {
   update(); // Update game state
   draw(); // Render game elements
+  teacher();
   requestAnimationFrame(gameLoop); // Schedule next frame
   GazeeboIdle();
 }
@@ -115,20 +183,30 @@ function update() {
 function draw() {
   graphics.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas once at the beginning
 
+  
 
     // Draw the platforms
-    graphics.fillStyle = "#008b1eff";
+    //bg
+    graphics.fillStyle = "#133751";
+    for (const platform of platforms_bg) {
+      graphics.fillRect(platform.x, platform.y, platform.width, platform.height);
+    }
+    //border
+    graphics.fillStyle = "#117e39ff";
     for (const platform of platforms) {
       graphics.fillRect(platform.x-10, platform.y-10, platform.width+20, platform.height+20);
     }
-    graphics.fillStyle = "#00ad26ff";
+    //fill
+    graphics.fillStyle = "#00c15d";
     for (const platform of platforms) {
       graphics.fillRect(platform.x, platform.y, platform.width, platform.height);
     }
 
     // Draw the ground
-    graphics.fillStyle = "#196801ff"; // Brown color for the ground
+    graphics.fillStyle = "#117e39ff"; // Brown color for the ground
     graphics.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
+    
+    ship_part();
 
     // // Draw the player as a blue rectangle
     // graphics.fillStyle = "blue";
@@ -144,6 +222,8 @@ const mImage3 = new Image();
 mImage3.src = "prites/Gazeebo2.png";
 const mImage4 = new Image();
 mImage4.src = "prites/Gazeebo3.png";
+let mImage5 = new Image();
+mImage5.src = "prites/ship_parts/shippart1.png";
 
 function GazeeboIdle() {
   if (frame > 0 && frame < 11) {
@@ -153,11 +233,17 @@ function GazeeboIdle() {
   } else if(frame > 20 && frame < 31){
     graphics.drawImage(mImage3, player.x-10, player.y - 20, 60, 80);
   } else if(frame> 30 && frame < 41){
-    graphics.drawImage(mImage3, player.x-10, player.y - 20, 60, 80);
+    graphics.drawImage(mImage4, player.x-10, player.y - 20, 60, 80);
   }
   frame++;
   if (frame > 40) {
     frame = 1;
+  }
+}
+
+function ship_part(){
+  for (const shippart of shipparts) {
+    graphics.drawImage(mImage5, shippart.x, shippart.y, shippart.width, shippart.height);
   }
 }
 
