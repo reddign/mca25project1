@@ -6,9 +6,6 @@
 $u3 = $_POST["user3"];
 $p3 = $_POST["password3"];
 $e3 = $_POST["email2"];
-// $salt = "";
-// $saltArray = array("a", "b", "c", "d", "e", "f", "g", "h","i", "j", "k", "l", "m", "n","o","p", "q", "r", "s", "t", "u","v","w","x","y","z",
-//                    "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9");
 
 
 
@@ -18,10 +15,10 @@ if($mysqli -> connect_errno){
     echo "Failed to connect to My SQL : ". $mysqli->connect_error;
     exit;
 }
-// generateSalt();
+
 $sql = "INSERT INTO starfall_users
 (username,password,email,approved,badge1,badge2,badge3) 
-VALUES ('{$u3}','{$p3}','{$e3}',1,0,0,0);";
+VALUES ('{$u3}',SHA2(concat('{$p3}','starfall'),224),'{$e3}',1,0,0,0);";
 
 
 $result = $mysqli -> query($sql);
@@ -40,15 +37,7 @@ header("location:../index.php");
 //  }
 
 // print_r($_SESSION);
-// function generateSalt()
-// {
-//     $randomInt = 0;
-//     for($i = 0; $i < 7; $i++)
-//     {
-//         $randomInt = mt_rand(0, count($saltArray));
-//         $salt += $saltArray[$randomInt];
-//     }
-// }
+
 ?>
 
 
