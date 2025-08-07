@@ -156,6 +156,7 @@ function checkPlatformCollision(platform) {
 // }
 
 //attempt 3 (god freaking dammit dude this better work)
+//im getting closer but it's still not quite there
 function wincollision(winbox){
   const playerL = player.x;
   const playerR = player.x + player.width;
