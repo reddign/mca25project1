@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'starborn';
+    src: url('/Front-End/fonts/Superadorable.ttf') format('truetype');
+    font-weight: normal;
+}
+
+body {
+    background-color: #403659;
+    margin: 0;
+    padding: 0;
+     background-image: url(space.gif); 
+    background-size: 100%;
+    background-position:center;
+     
+}
+
+/* h1 {
+    color: #13a448;
+    background-color: #00C15D;
+    border-radius: 15px;
+    width: 13%;
+    text-align: center;
+    border: 3px solid #038d46;
+    border-style: dashed;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 2%;
+    margin: 0 auto;
+} */
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.main-nav {
+    /* background-color: #583B53; */
+   
+     background-size: 70%;
+    background-position:center;
+    padding: 50px 0;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: auto;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: larger;
+    
+}
+
+.nav-item {
+    padding: 0 15px;
+}
+
+.nav-item.logo {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.nav-item.page {
+    text-align: center;
+}
+
+.w3-bar-item.w3-button {
+    color: rgb(255, 255, 255);
+    padding: 8px 16px;
+    display: block;
+    text-shadow: 1px 1px 2px #00ff7b;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #3f7d7d;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.w3-bar-item.w3-button:hover{
+    background-color: #5fe26a;
+    border-radius: 15px;
+    opacity: 0.9;
+    color: #faf8ce;
+}
+
+
+
+

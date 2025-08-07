@@ -6,7 +6,7 @@
     <a href="Front-End/login.php"></a>
     <link href="profile.css" rel="stylesheet">
     
-   <?php include "navbar.php";
+   <?php include "profilenavbar.php";
    
    ?>
 </head>
