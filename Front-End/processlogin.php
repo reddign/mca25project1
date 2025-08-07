@@ -12,7 +12,7 @@ $badge3 = $_POST["badge3"];
 // if($_SERVER['HTTP_HOST']=="127.0.0.1"){
 //     $mysqli = new mysqli("127.0.0.1","root","","mca");
 // }else{
-    $mysqli = new mysqli("195.35.59.14","u121755072_cohick","+05Ouz%9","u121755072_cohickdb");
+    $mysqli = new mysqli("195.35.59.14","u121755072_starfall","pN7/kBo?aic","u121755072_starfalldb");
 
 
 if($mysqli -> connect_errno){
