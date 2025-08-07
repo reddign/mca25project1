@@ -1,3 +1,9 @@
+/*************************************************************************************************************************
+    Programmer: Luca J. M. Suliveras with assistance from Teddy Bayzar
+    Git: TStarfall-Luca
+************************************************************************************************************************/
+
+
 let canvas = document.querySelector("canvas");
 const graphics = canvas.getContext("2d");
 
