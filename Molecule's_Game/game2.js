@@ -17,8 +17,11 @@
     let fps = 9;
     let mFrames = 1
     let bFrames = 1;
-    let speed = 30;
+    let speed = 35;
     let gameStarted = false;
+    let interval = "";
+    let dead = false;
+
 //Molecule sprites
     const mImage1 = new Image();
     mImage1.src = "Molecule_1.png"
@@ -47,50 +50,89 @@
     back3.src = "Background_3.png";
     backgrounds.push(back3);
 
+    screen();
 
 
-function beginScreen()
+function screen()
 {
-    graphics.fillStyle = "#2E273F";
-    graphics.fillRect(0,0,canvas.width,canvas.height)
-    graphics.fillStyle = "#00C15D";
-    graphics.strokeStyle = "#00C15D";
-    graphics.font = "bold 25px '', monospace"
-    let begin = "A bird has stolen the core to the spaceship";
-    graphics.fillText(begin,220,200);
-    graphics.fillText("Press enter to start", 375,250);
-
+    if(gameStarted == false){
+        graphics.strokeStyle ="#583B53"
+        graphics.fillStyle = "#2E273F";
+        graphics.fillRect(0,0,canvas.width,canvas.height);
+        graphics.strokeRect(0,0,canvas.width,canvas.height);
+        graphics.fillStyle = "#00C15D";
+        graphics.strokeStyle = "#00C15D";
+        graphics.font = "bold 25px '', monospace"
+        graphics.fillText("A bird has stolen the core to the spaceship.",200,200);
+        graphics.fillText("Get a score of 200 to get capture the bird, and get it back.",100,250)
+        graphics.fillText("click the mouse to start the game", 250,300);
+    }else if(gameStarted == true){
+    graphics.strokeStyle ="#f4f0f3ff"
+        graphics.fillStyle = "#010001ff";
+        graphics.fillRect(0,0,canvas.width,canvas.height);
+        graphics.strokeRect(0,0,canvas.width,canvas.height);
+        graphics.fillStyle = "#d20909ff";
+        graphics.strokeStyle = "#f4f0f3ff";
+        graphics.font = "bold 25px '', monospace"
+        graphics.fillText("You killed Molecule! Try again?",280,250);
+    }
 }
-function startGame(event){
-
-    
-        
-            if( gameStarted == false)
-            {
-             let interval = window.setInterval(animate,100);
-             gameStarted = true;
-            }
+function startGame(event)
+{
+    if(gameStarted == false && dead == false)
+    {
+        interval = window.setInterval(animation,500/fps);
+        gameStarted = true;
+    }else if(gameStarted == true && dead == true){
+        interval = window.setInterval(animation,500/fps);
+        score = 0;
+        dead = false;
+    }
+       
 }
+
 //Animation function to make the game move
     function animation()
     {
         clear();
         scoreBoard();
+        if(score < 200){
         rock();
         rockX -= speed;
-        moleculeImage(x,y);
+        }else{
+        rockX = -500;
+        }
         birdImage(birdX,birdY);
+        moleculeImage(x,y);
         jump();
         if(y < 370)
         {y += 15;}
         if(rockX < -50)
         {rockX = 1010;}
         if(rockX > 120 && rockX <= 160 && y == 370){
-            console.log("You died");
-        }else if(rockX > 120 && rockX <= 160 && y != 370){
+            screen();
+            window.clearInterval(interval)
+            y = 370;
+            dead = true;
+        }else if(rockX > 130 && rockX <= 150 && y < 390){
             score+= 10;
         }
+        if(score >= 200){
+            birdX -= 8;
+            birdY += 3
+        }
+        if(birdX <= 160 ){
+        window.clearInterval(interval);
+        graphics.strokeStyle = "#f4f0f3ff";
+        graphics.fillStyle = "#010001ff";
+        graphics.fillRect(0,0,canvas.width,canvas.height);
+        graphics.strokeRect(0,0,canvas.width,canvas.height);
+        graphics.fillStyle = "#f4f0f3ff";
+        graphics.strokeStyle = "#f4f0f3ff";
+        graphics.font = "bold 25px '', monospace"
+        graphics.fillText("You did it! You helped molecule get the core!",210,250);
     }
+}
 //Function to display score
 function scoreBoard()
 {
@@ -146,10 +188,6 @@ function scoreBoard()
         if(bFrames > 2){
             bFrames = 0 ;
         }
-    }
-//Bird images
-    function bird(){
-
     }
 //Clear
 function clear()
