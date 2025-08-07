@@ -38,8 +38,8 @@ a {
 
 .nav-list {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,12 +70,12 @@ a {
     font-family:Arial, Helvetica, sans-serif;
 }
 
-.w3-bar-item.w3-button:hover {
+.nav-item.page:hover {
     background-color: #32816f;
     border-radius: 15px;
     opacity: 0.9;
     color: #723a8c;
-    width: 200px;
+    width: 150px;
 }
 
 
