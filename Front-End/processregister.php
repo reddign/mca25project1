@@ -17,8 +17,8 @@ if($mysqli -> connect_errno){
 }
 
 $sql = "INSERT INTO starfall_users
-(username,password,email,approved,badge1,badge2,badge3) 
-VALUES ('{$u3}',SHA2(concat('{$p3}','starfall'),224),'{$e3}',1,0,0,0);";
+(username,password,email,approved) 
+VALUES ('{$u3}',SHA2(concat('{$p3}','starfall'),224),'{$e3}',1);";
 
 
 $result = $mysqli -> query($sql);
