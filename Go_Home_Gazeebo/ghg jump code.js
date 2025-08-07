@@ -60,7 +60,7 @@ const shipparts = [
 ];
 
 const winboxes = [
-  { x: 0, y: 0, width: 100, height: 100},
+  { x: 0, y: 0, width: 110, height: 100},
 ]
 
 
@@ -268,13 +268,13 @@ function draw() {
     // Draw the ground
     graphics.fillStyle = "#117e39ff"; // Brown color for the ground
     graphics.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
-    
-    ship_part();
 
     graphics.fillStyle = "#ff0000ff";
     for (const winbox of winboxes) {
       graphics.fillRect(winbox.x, winbox.y, winbox.width, winbox.height);
     }
+
+    ship_part();
     // // Draw the player as a blue rectangle
     // graphics.fillStyle = "blue";
     // graphics.fillRect(player.x, player.y, player.width, player.height);
