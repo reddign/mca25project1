@@ -27,7 +27,7 @@ const platforms = [
 
   //floating platforms for ship part 1 (first to last)
   { x: 490, y: 500, width: 250, height: 50 },
-  { x: 10, y: 500, width: 250, height: 50 },
+  { x: 10, y: 400, width: 250, height: 50 },
 
   //area to last shippart (first to last)
   { x: 1300, y: 500, width: 595, height: 50 },
@@ -50,12 +50,13 @@ const platforms_bg = [
 ];
 
 const shipparts = [
-  {x:50, y:30, width:50, height:50},
-
-  {x:50, y:430, width:50, height:50},
-
-  {x:1820, y:820, width:50, height:50},
+  {x:30, y:30, width:50, height:50},
 ];
+
+const winboxes = [
+  { x: 0, y: 0, width: 100, height: 100},
+]
+
 
 const groundLevel = canvas.height - 10;
 const gravity = 0.5; // Controls the strength of gravity, adjust as needed
@@ -74,32 +75,26 @@ let frame = 1;
 function teacher(){
   graphics.strokeStyle = "#f4f0f3ff";
   graphics.font = "bold 25px '', monospace";
+  //left side of map
   graphics.fillText("Press W to jump, and A and D", 60,700);
   graphics.fillText("to move left and right respectively!", 10, 730);
+
+  //right side of map
+  graphics.fillText("Your goal is to retrieve", 1460,700);
+  graphics.fillText("the missing ship leg at the", 1440, 730);
+  graphics.fillText("top of the hill. Good Luck!", 1450, 760);
 }
 
 function winscreen(){
   graphics.strokeStyle = "#f4f0f3ff";
-  graphics.fillStyle = "#010001ff";
+  graphics.fillStyle = "#1d4910ff";
   graphics.fillRect(0,0,canvas.width,canvas.height);
   graphics.strokeRect(0,0,canvas.width,canvas.height);
   graphics.fillStyle = "#60f50bff";
   graphics.strokeStyle = "#f4f0f3ff";
-  graphics.font = "bold 25px '', monospace"
-  graphics.fillText("You did it! Gazeebo has collected all his ship parts!", 210,250);
-  graphics.fillText("But wait, don't you need the core too?",210,300);
-}
-
-function collect(){
-  while(i<3){
-    if(player.x > shipparts.x){
-    i++
-    shipparts.remove;
-    }
-
-  }if(i>=3){
-    winscreen();
-  }
+  graphics.font = "bold 50px '', monospace"
+  graphics.fillText("You did it! You got the landing leg!", 210,250);
+  graphics.fillText("But wait, don't you need the ship core too?",210,300);
 }
 
 function checkPlatformCollision(platform) {
@@ -126,6 +121,60 @@ function checkPlatformCollision(platform) {
   return false;
 }
 
+//attempt 1
+// function collect(){
+//   // if (player.x > shipparts.x && player.y > shipparts.y && player.width > shipparts.width && player.height > shipparts.height) {
+
+//   for(const winbox of winboxes){
+//     if(player.width > shipparts.width && player.height <= shipparts.height){
+//       winscreen(winbox);
+//       console.log("why isn't this working?")
+//     }else{
+//       console.log("crap.")
+//     }
+//   }
+// }
+
+//attempt 2
+// function collect(){
+//   for(let i = 0; i < 0; i ++){
+//     if(i==1){
+//       winscreen(winbox);
+//     }else if(i==0){
+//       console.log("why isn't this working?")
+//     }
+//   }
+//   if(player.x < shipparts.x && player.y < shipparts.y && player.width < shipparts.width && player.height < shipparts.height){
+//     i+=1
+//   }
+// }
+
+//attempt 3 (god freaking dammit dude this better work)
+function wincollision(winbox){
+  const playerL = player.x;
+  const playerR = player.x + player.width;
+  const playerT = player.y;
+  const playerB = player.y + player.height;
+
+  const winboxL = winboxes.x;
+  const winboxR = winboxes.x + winboxes.width;
+  const winboxT = winboxes.y;
+  const winboxB = winboxes.y + winboxes.height
+
+  if (
+    playerR > winboxL &&
+    playerL < winboxR &&
+    playerB >= winboxT &&
+    playerT <= winboxB &&
+    // player.height <= platformB &&
+    player.velocityY >= 0
+  ) {
+    return true;
+  }
+  return false;
+}
+
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "w" && !player.isJumping) {
     player.isJumping = true;
@@ -149,6 +198,7 @@ function gameLoop() {
   teacher();
   requestAnimationFrame(gameLoop); // Schedule next frame
   GazeeboIdle();
+  // winscreen();
 }
 
 function update() {
@@ -174,6 +224,12 @@ function update() {
       player.isJumping = false; // Reset jump state
     }
   }
+  if(wincollision(winboxes)) {
+    winscreen();
+  }else{
+    console.log ("ughhhhh")
+  }
+
 
   // Boundary checks
   player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
@@ -248,4 +304,4 @@ function ship_part(){
 }
 
 gameLoop();
-window.setInterval(animation, 500 / 9);
+window.setInterval(500/9);
