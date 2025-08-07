@@ -271,6 +271,10 @@ function draw() {
     
     ship_part();
 
+    graphics.fillStyle = "#ff0000ff";
+    for (const winbox of winboxes) {
+      graphics.fillRect(winbox.x, winbox.y, winbox.width, winbox.height);
+    }
     // // Draw the player as a blue rectangle
     // graphics.fillStyle = "blue";
     // graphics.fillRect(player.x, player.y, player.width, player.height);
