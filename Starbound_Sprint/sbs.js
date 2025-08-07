@@ -6,22 +6,20 @@
 let canvas = document.querySelector("canvas");
 //Gets the graphics
 const graphics = canvas.getContext("2d");
-let x = 750
-let y = 800
+let x = 500
+let y = 430
 let interval = ""
-let enemyPosition = 
-[
-[100,100],//Enemy 1
-[100,100],//Enemy 2
-[-1000,-1000],//Enemy 3
-[-1000,-1000],//Enemy 4
-[-1000,-1000],//Enemy 5
-[-1000,-1000],//Enemy 6
-[-1000,-1000],//Enemy 7
-[-1000,-1000],//Enemy 8
-[-1000,-1000],//Enemy 9
-[-1000,-1000],//Enemy 10
-]
+let enemyX = [-10,-10,1030,4,-4,-4,-4,-4,-4,-4]
+let enemyY = [400,345,290,20,360,250,100,20]
+let enemySpeed = [20,22,23,20,25,18,20,30]
+let enemyDirection =[1,1,-1,-1,1,1,-1,1]
+const keys = {
+  w: false,
+  a: false,
+  s: false,
+  d: false,
+};
+
 
 
 
@@ -31,12 +29,22 @@ function animation()
 {
     clear();
     player();
-    movement();
+    enemy(0);
+    enemy(1);
+    enemy(2);
+    checkKeys();
+    for(let i = 0; i < enemyX.length; i++)
+    {
+      
+    }
 }
-
+function enemyMovement(r){
+enemyX[r] += (enemySpeed[r] * enemyDirection[r]);
+}
 function enemy(r){
 graphics.fillStyle = "#d16262ff";
-graphics.fillRect(enemyPosition[r][0],[r][1],60,60);
+graphics.fillRect(enemyX[r],enemyY[r],50,50);
+enemyMovement(r);
 }
 //function to clear the screen
 function clear()
@@ -60,23 +68,37 @@ function clear()
 }
 
 //Ship
-function player(){
+function player()
+{
 graphics.fillStyle = "#f6ffb4ff";
-graphics.fillRect(x,y,60,60);
+graphics.fillRect(x,y,40,40);
+}
+function checkKeys()
+{
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "w") keys.w = true;
+        if (event.key === "a") keys.a = true;
+        if (event.key === "s") keys.s = true;
+        if (event.key === "d") keys.d = true;
+        });
+    document.addEventListener('keyup', function(event) {
+        if (event.key === "w") keys.w = false;
+        if (event.key === "a") keys.a = false;
+        if (event.key === "s") keys.s = false;
+        if (event.key === "d") keys.d = false;
+    })
+movement();
 }
 function movement(){
-    document.addEventListener('keyup', function(event) {
-
-        if (event.key == 'a')
-        {x += -5;}
-        else if(event.key == 'd')
-        {x += 5}
-        else if(event.key == 'w')
-        {y -= 5}
-        else if(event.key == "s")
-        {y += 5}
-})}
-    
+        if (keys.a && x > 18)
+            {x -= 18;}
+        else if(keys.d && x < canvas.width- 58)
+            {x += 18;}
+        else if(keys.s && y < canvas.height - 58)
+            {y += 18;}
+        else if(keys.w)
+            {y -= 18;}
+}
 
 
-window.setInterval(animation,300);
+window.setInterval(animation,200);

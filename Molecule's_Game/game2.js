@@ -65,7 +65,7 @@ function screen()
         graphics.font = "bold 25px '', monospace"
         graphics.fillText("A bird has stolen the core to the spaceship.",200,200);
         graphics.fillText("Get a score of 200 to get capture the bird, and get it back.",100,250)
-        graphics.fillText("click the mouse to start the game", 250,300);
+        graphics.fillText("click the mouse to start the game, and press enter to jump.", 110,300);
     }else if(gameStarted == true){
     graphics.strokeStyle ="#f4f0f3ff"
         graphics.fillStyle = "#010001ff";
