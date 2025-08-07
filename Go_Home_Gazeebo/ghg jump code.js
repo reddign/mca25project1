@@ -1,8 +1,8 @@
 let canvas = document.querySelector("canvas");
 const graphics = canvas.getContext("2d");
 
-canvas.width = 1200;
-canvas.height = 800;
+canvas.width = 1905;
+canvas.height = 900;
 
 const player = {
   x: canvas.width / 40,
@@ -15,9 +15,13 @@ const player = {
 };
 
 const platforms = [
-  { x: 200, y: 700, width: 200, height: 100 },
-  { x: 500, y: 350, width: 200, height: 20 },
-  { x: 800, y: 600, width: 250, height: 20 },
+  //first platform
+  { x: 200, y: 800, width: 100, height: 100 },
+
+  //platform heirarchy (last to first)
+  { x: 800, y: 400, width: 150, height: 100 },
+  { x: 760, y: 650, width: 100, height: 400 },
+  { x: 600, y: 800, width: 150, height: 100 },
 ];
 
 const groundLevel = canvas.height - 10;
@@ -113,18 +117,22 @@ function draw() {
 
 
     // Draw the platforms
-  graphics.fillStyle = "black";
-  for (const platform of platforms) {
-    graphics.fillRect(platform.x, platform.y, platform.width, platform.height);
-  }
+    graphics.fillStyle = "#008b1eff";
+    for (const platform of platforms) {
+      graphics.fillRect(platform.x-10, platform.y-10, platform.width+20, platform.height+20);
+    }
+    graphics.fillStyle = "#00ad26ff";
+    for (const platform of platforms) {
+      graphics.fillRect(platform.x, platform.y, platform.width, platform.height);
+    }
 
-  // Draw the ground
-  graphics.fillStyle = "#8B4513"; // Brown color for the ground
-  graphics.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
+    // Draw the ground
+    graphics.fillStyle = "#196801ff"; // Brown color for the ground
+    graphics.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
 
-  // // Draw the player as a blue rectangle
-  // graphics.fillStyle = "blue";
-  // graphics.fillRect(player.x, player.y, player.width, player.height);
+    // // Draw the player as a blue rectangle
+    // graphics.fillStyle = "blue";
+    // graphics.fillRect(player.x, player.y, player.width, player.height);
 }
 
 // Animations for the player (GazeeboIdle)
@@ -138,16 +146,20 @@ const mImage4 = new Image();
 mImage4.src = "prites/Gazeebo3.png";
 
 function GazeeboIdle() {
-  if (frame === 1 || frame === 7.5) {
+  if (frame > 0 && frame < 11) {
+    graphics.drawImage(mImage1, player.x-10, player.y - 20, 60, 80);
+  } else if(frame > 10 && frame < 21){
     graphics.drawImage(mImage2, player.x-10, player.y - 20, 60, 80);
-  } else {
-    graphics.drawImage(mImage2, player.x-10, player.y - 20, 60, 80);
+  } else if(frame > 20 && frame < 31){
+    graphics.drawImage(mImage3, player.x-10, player.y - 20, 60, 80);
+  } else if(frame> 30 && frame < 41){
+    graphics.drawImage(mImage3, player.x-10, player.y - 20, 60, 80);
   }
   frame++;
-  if (frame > 61) {
+  if (frame > 40) {
     frame = 1;
   }
 }
 
 gameLoop();
-window.setInterval(animation, 1000 / 30);
+window.setInterval(animation, 500 / 9);
