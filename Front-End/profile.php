@@ -28,7 +28,7 @@
     Profile:
     </div>
 </div>
-<div style="width:850px;margin:auto;background-color:white;min-height:300px;">
+<div style="width:850px;margin:auto;background-color:white;min-height:300px;text-align:center;font-size:75px">
     <?php
     session_start();
 
@@ -41,13 +41,14 @@
     } 
     ?>
   <section>
-    <h2>Achievements!</h2>
+    <img src="../Go_Home_Gazeebo/prites/Gazeebo.png" style="width:150px;text-align:center;">
+    <!-- <h2>Achievements!</h2>
         <p>
         Badge 1 : <br><br><br>
         Badge 2 : <br><br><br>
         Badge 3 : 
 
-        </p>
+        </p> -->
     </section>
 </div>
 </body>
