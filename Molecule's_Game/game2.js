@@ -14,6 +14,7 @@
     let score = 0;
     let y = 370;
     let x = 100;
+    let speedUp = false;
     let fps = 9;
     let mFrames = 1
     let bFrames = 1;
@@ -21,7 +22,6 @@
     let gameStarted = false;
     let interval = "";
     let dead = false;
-
 //Molecule sprites
     const mImage1 = new Image();
     mImage1.src = "Molecule_1.png"
@@ -67,7 +67,7 @@ function screen()
         graphics.fillText("Get a score of 200 to get capture the bird, and get it back.",100,250)
         graphics.fillText("click the mouse to start the game, and press enter to jump.", 110,300);
     }else if(gameStarted == true){
-    graphics.strokeStyle ="#f4f0f3ff"
+        graphics.strokeStyle ="#f4f0f3ff"
         graphics.fillStyle = "#010001ff";
         graphics.fillRect(0,0,canvas.width,canvas.height);
         graphics.strokeRect(0,0,canvas.width,canvas.height);
@@ -109,7 +109,7 @@ function startGame(event)
         {y += 15;}
         if(rockX < -50)
         {rockX = 1010;}
-        if(rockX > 120 && rockX <= 160 && y == 370){
+        if(rockX >= 70 && rockX <= 165 && y >= 360){
             screen();
             window.clearInterval(interval)
             y = 370;
