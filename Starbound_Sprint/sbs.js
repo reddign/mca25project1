@@ -45,7 +45,8 @@ function screen()
         graphics.strokeStyle = "#00C15D";
         graphics.font = "bold 25px '', monospace"
         graphics.fillText("Help Gazeebo get home by flying to the top of the screen",110,200);
-        graphics.fillText("Use WASD to move",370,250)
+        graphics.fillText("click the mouse to start the game", 270,250);
+        graphics.fillText("Use WASD to move",370,300)
         }else{
         graphics.strokeStyle ="#f4f0f3ff"
         graphics.fillStyle = "#010001ff";
