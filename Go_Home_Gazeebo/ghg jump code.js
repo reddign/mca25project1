@@ -1,13 +1,6 @@
-/*************************************************************************************************************************
-    Programmer: Luca J. M. Suliveras with assistance from Teddy Bayzar and Ryan Lefever
-    Git: TStarfall-Luca
-************************************************************************************************************************/
-
-
 let canvas = document.querySelector("canvas");
 const graphics = canvas.getContext("2d");
-let interval = "";
-let endInterval = false;
+
 canvas.width = 1905;
 canvas.height = 900;
 
@@ -56,19 +49,22 @@ const platforms_bg = [
 
 ];
 
-const shipparts = [
-  {x:30, y:30, width:50, height:50},
-];
+// const shipparts = [
+//   {x:50, y:40, width:50, height:50, collected: false},
+//   {x:1830, y:830, width:50, height:50, collected: false},
+//   {x:25, y:330, width:50, height:50, collected: false}
+// ];
 
-const winboxes = [
-  { x: 0, y: 0, width: 110, height: 100},
-]
-
+const shippart1 = { x: 50, y: 40, width: 50, height: 50, collected: false };
+const shippart2 = { x: 1830, y: 830, width: 50, height: 50, collected: false };
+const shippart3 = { x: 25, y: 330, width: 50, height: 50, collected: false };
 
 const groundLevel = canvas.height - 10;
 const gravity = 0.5; // Controls the strength of gravity, adjust as needed
 const jumpForce = -15; // The initial upward force when jumping
-let i = 0
+let parts_collect = 0;
+let i = 0;
+let shippartCollected = false;
 
 const keys = {
   w: false,
@@ -94,14 +90,58 @@ function teacher(){
 
 function winscreen(){
   graphics.strokeStyle = "#f4f0f3ff";
-  graphics.fillStyle = "#1d4910ff";
+  graphics.fillStyle = "#010001ff";
   graphics.fillRect(0,0,canvas.width,canvas.height);
   graphics.strokeRect(0,0,canvas.width,canvas.height);
   graphics.fillStyle = "#60f50bff";
   graphics.strokeStyle = "#f4f0f3ff";
-  graphics.font = "bold 50px '', monospace"
-  graphics.fillText("You did it! You got the landing leg!", 210,250);
+  graphics.font = "bold 25px '', monospace"
+  graphics.fillText("You did it! You got the ship leg!", 210,250);
   graphics.fillText("But wait, don't you need the ship core too?",210,300);
+}
+
+function isColliding(a, b) {
+  return (
+    a.x < b.x + b.width &&
+    a.x + a.width > b.x &&
+    a.y < b.y + b.height &&
+    a.y + a.height > b.y
+  );
+}
+
+function collect() {
+  // Check for each part individually
+  if (!shippart1.collected && isColliding(player, shippart1)) {
+    shippart1.collected = true;
+    parts_collect++;
+  }
+
+  if (!shippart2.collected && isColliding(player, shippart2)) {
+    shippart2.collected = true;
+    parts_collect++;
+  }
+
+  if (!shippart3.collected && isColliding(player, shippart3)) {
+    shippart3.collected = true;
+    parts_collect++;
+  }
+
+  // Check for win
+  if (parts_collect >= 3) {
+    winscreen();
+    return;
+  }
+
+  // Draw each uncollected part individually
+  if (!shippart1.collected) {
+    graphics.drawImage(mImage6, shippart1.x, shippart1.y, shippart1.width, shippart1.height);
+  }
+  if (!shippart2.collected) {
+    graphics.drawImage(mImage7, shippart2.x, shippart2.y, shippart2.width, shippart2.height);
+  }
+  if (!shippart3.collected) {
+    graphics.drawImage(mImage8, shippart3.x, shippart3.y, shippart3.width, shippart3.height);
+  }
 }
 
 function checkPlatformCollision(platform) {
@@ -128,38 +168,6 @@ function checkPlatformCollision(platform) {
   return false;
 }
 
-//attempt 1
-// function collect(){
-//   // if (player.x > shipparts.x && player.y > shipparts.y && player.width > shipparts.width && player.height > shipparts.height) {
-
-//   for(const winbox of winboxes){
-//     if(player.width > shipparts.width && player.height <= shipparts.height){
-//       winscreen(winbox);
-//       console.log("why isn't this working?")
-//     }else{
-//       console.log("crap.")
-//     }
-//   }
-// }
-
-//attempt 2
-// function collect(){
-//   for(let i = 0; i < 0; i ++){
-//     if(i==1){
-//       winscreen(winbox);
-//     }else if(i==0){
-//       console.log("why isn't this working?")
-//     }
-//   }
-//   if(player.x < shipparts.x && player.y < shipparts.y && player.width < shipparts.width && player.height < shipparts.height){
-//     i+=1
-//   }
-// }
-
-//attempt 3 (god freaking dammit dude this better work)
-//im getting closer but it's still not quite there
-
-
 document.addEventListener("keydown", (e) => {
   if (e.key === "w" && !player.isJumping) {
     player.isJumping = true;
@@ -177,16 +185,13 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "d") keys.d = false;
 });
 
-function gameLoop(){
+function gameLoop() {
   update(); // Update game state
   draw(); // Render game elements
   teacher();
   requestAnimationFrame(gameLoop); // Schedule next frame
   GazeeboIdle();
- if(player.x <= 70 && player.y <= 40)
-  {
-   winscreen();
-  }
+  collect();
 }
 
 function update() {
@@ -212,8 +217,6 @@ function update() {
       player.isJumping = false; // Reset jump state
     }
   }
-  
- 
 
   // Boundary checks
   player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
@@ -222,6 +225,7 @@ function update() {
 
 function draw() {
   graphics.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas once at the beginning
+
     // Draw the platforms
     //bg
     graphics.fillStyle = "#133751";
@@ -242,13 +246,7 @@ function draw() {
     // Draw the ground
     graphics.fillStyle = "#117e39ff"; // Brown color for the ground
     graphics.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
-
-    graphics.fillStyle = "#ff0000ff";
-    // for (const winbox of winboxes) {
-    //   graphics.fillRect(winbox.x, winbox.y, winbox.width, winbox.height);
-    // }
-
-    ship_part();
+    
     // // Draw the player as a blue rectangle
     // graphics.fillStyle = "blue";
     // graphics.fillRect(player.x, player.y, player.width, player.height);
@@ -263,8 +261,13 @@ const mImage3 = new Image();
 mImage3.src = "prites/Gazeebo2.png";
 const mImage4 = new Image();
 mImage4.src = "prites/Gazeebo3.png";
-let mImage5 = new Image();
-mImage5.src = "prites/ship_parts/shippart1.png";
+const mImage6 = new Image();
+mImage6.src = "prites/ship_parts/shippart1.png";
+const mImage7 = new Image();
+mImage7.src = "prites/ship_parts/shippart2.png";
+const mImage8 = new Image();
+mImage8.src = "prites/ship_parts/shippart3.png";
+
 
 function GazeeboIdle() {
   if (frame > 0 && frame < 11) {
@@ -282,10 +285,5 @@ function GazeeboIdle() {
   }
 }
 
-function ship_part(){
-  for (const shippart of shipparts) {
-    graphics.drawImage(mImage5, shippart.x, shippart.y, shippart.width, shippart.height);
-  }
-}
-
-interval = window.setInterval(gameLoop(),500/9);
+gameLoop();
+window.setInterval(animation, 500 / 9);
