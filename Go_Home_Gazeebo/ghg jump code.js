@@ -157,7 +157,7 @@ function checkPlatformCollision(platform) {
 
 //attempt 3 (god freaking dammit dude this better work)
 //im getting closer but it's still not quite there
-function wincollision(winbox){
+function wincollision(){
   const playerL = player.x;
   const playerR = player.x + player.width;
   const playerT = player.y;
@@ -168,17 +168,9 @@ function wincollision(winbox){
   const winboxT = winboxes.y;
   const winboxB = winboxes.y + winboxes.height
 
-  if (
-    playerR > winboxL &&
-    playerL < winboxR &&
-    playerB >= winboxT &&
-    playerT <= winboxB &&
-    // player.height <= platformB &&
-    player.velocityY >= 0
-  ) {
-    return true;
+  if(playerR >= winboxL && playerL <= winboxR && playerB >= winboxT && playerT <= winboxB){
+    winscreen();
   }
-  return false;
 }
 
 
@@ -199,7 +191,7 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "d") keys.d = false;
 });
 
-function gameLoop() {
+function gameLoop(){
   update(); // Update game state
   draw(); // Render game elements
   teacher();
@@ -245,9 +237,6 @@ function update() {
 
 function draw() {
   graphics.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas once at the beginning
-
-  
-
     // Draw the platforms
     //bg
     graphics.fillStyle = "#133751";
