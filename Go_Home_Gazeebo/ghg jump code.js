@@ -6,7 +6,8 @@
 
 let canvas = document.querySelector("canvas");
 const graphics = canvas.getContext("2d");
-
+let interval = "";
+let endInterval = false;
 canvas.width = 1905;
 canvas.height = 900;
 
@@ -157,21 +158,6 @@ function checkPlatformCollision(platform) {
 
 //attempt 3 (god freaking dammit dude this better work)
 //im getting closer but it's still not quite there
-function wincollision(){
-  const playerL = player.x;
-  const playerR = player.x + player.width;
-  const playerT = player.y;
-  const playerB = player.y + player.height;
-
-  const winboxL = winboxes.x;
-  const winboxR = winboxes.x + winboxes.width;
-  const winboxT = winboxes.y;
-  const winboxB = winboxes.y + winboxes.height
-
-  if(playerR >= winboxL && playerL <= winboxR && playerB >= winboxT && playerT <= winboxB){
-    winscreen();
-  }
-}
 
 
 document.addEventListener("keydown", (e) => {
@@ -197,7 +183,10 @@ function gameLoop(){
   teacher();
   requestAnimationFrame(gameLoop); // Schedule next frame
   GazeeboIdle();
-  // winscreen();
+ if(player.x <= 70 && player.y <= 40)
+  {
+   winscreen();
+  }
 }
 
 function update() {
@@ -223,12 +212,8 @@ function update() {
       player.isJumping = false; // Reset jump state
     }
   }
-  if(wincollision(winboxes)) {
-    winscreen();
-  }else{
-    console.log ("ughhhhh")
-  }
-
+  
+ 
 
   // Boundary checks
   player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
@@ -259,9 +244,9 @@ function draw() {
     graphics.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
 
     graphics.fillStyle = "#ff0000ff";
-    for (const winbox of winboxes) {
-      graphics.fillRect(winbox.x, winbox.y, winbox.width, winbox.height);
-    }
+    // for (const winbox of winboxes) {
+    //   graphics.fillRect(winbox.x, winbox.y, winbox.width, winbox.height);
+    // }
 
     ship_part();
     // // Draw the player as a blue rectangle
@@ -303,5 +288,4 @@ function ship_part(){
   }
 }
 
-gameLoop();
-window.setInterval(500/9);
+interval = window.setInterval(gameLoop(),500/9);
