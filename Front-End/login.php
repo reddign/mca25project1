@@ -6,6 +6,7 @@
      <!-- <link href="login.css" rel="stylesheet"> -->
     <script src="login.js"></script>
     <link href= "login.css" rel= stylesheet>
+    <?php $_SESSION["LoggedIn"]="NO";?>
     
 
 </head>

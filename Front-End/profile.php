@@ -36,7 +36,8 @@
         $u = $_SESSION["UserID"];
         echo $u;
     
-    } else {
+    } else if($_SESSION["LoggedIn"]=="NO"){
+
         echo "Not logged in";
     } 
     ?>

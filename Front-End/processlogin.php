@@ -2,7 +2,6 @@
 
 session_start();
 //process the login for website
-
 $u2 = $_POST["user2"];
 $p2 = $_POST["password2"];
 
