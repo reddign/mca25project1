@@ -130,7 +130,7 @@ clear();
 player();
 y -= 30;
 if(y < 0){
-window.clearInterval
+window.clearInterval(interval);
 graphics.drawImage(moon,0,0,1000,500)
 }
 }
