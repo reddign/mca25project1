@@ -1,5 +1,5 @@
 /*************************************************************************************************************************
-    Programmer: Luca J. M. Suliveras with assistance from Teddy Bayzar
+    Programmer: Luca J. M. Suliveras with assistance from Teddy Bayzar and Ryan Lefever
     Git: TStarfall-Luca
 ************************************************************************************************************************/
 
